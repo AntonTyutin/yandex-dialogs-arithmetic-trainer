@@ -1,0 +1,23 @@
+@startuml Dialog states
+hide empty description
+
+[*] --> Greeting
+Greeting: Давай потренируем устный счёт?
+Greeting: Пройдем по таблице умножения. Я задаю пример, а ты говори ответ! Начнем?
+
+Greeting -> AskMultiplicationQuestion: Agree
+AskMultiplicationQuestion: Сколько будет {a} умножить на {b}?
+AskMultiplicationQuestion -> CheckResultAndAskAgain: Answer
+CheckResultAndAskAgain: Молодец!
+CheckResultAndAskAgain: {a} на {b}?
+CheckResultAndAskAgain -> CheckResultAndAskAgain: Answer
+CheckResultAndAskAgain -> RepeatQuestion: Repeat
+RepeatQuestion: {a} на {b}?
+AskMultiplicationQuestion -> RepeatQuestion: Repeat
+
+AskMultiplicationQuestion --> [*] : Terminate
+CheckResultAndAskAgain --> [*] : Terminate
+RepeatQuestion --> [*] : Terminate
+Greeting --> [*] : Terminate
+
+@enduml
